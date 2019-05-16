@@ -18,7 +18,7 @@ describe HTTMultiParty::Multipartable do
 
     context 'with a header' do
       subject { request_with_headers('a' => 'header').to_hash }
-      it { is_expected.to include('content-length') }
+      it { is_expected.to_not include('content-length') }
       it { is_expected.to include('a') }
     end
 
