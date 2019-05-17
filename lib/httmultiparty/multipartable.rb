@@ -21,6 +21,7 @@ module HTTMultiParty::Multipartable
   def set_headers_for_body
     if defined?(@body_parts) && @body_parts
       set_content_type('multipart/form-data',  'boundary' => boundary)
+      @header['transfer-encoding'] = 'chunked'
       self.body_stream = CompositeReadIO.new(*@body_parts.map(&:to_io))
     end
   end

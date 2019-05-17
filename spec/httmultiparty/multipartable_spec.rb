@@ -18,14 +18,16 @@ describe HTTMultiParty::Multipartable do
 
     context 'with a header' do
       subject { request_with_headers('a' => 'header').to_hash }
-      it { is_expected.to_not include('content-length') }
+      it { is_expected.not_to include('content-length') }
       it { is_expected.to include('a') }
+      it { is_expected.to include('transfer-encoding') }
     end
 
     context 'without a header' do
       subject { request_with_headers(nil).to_hash }
-      it { is_expected.to include('content-length') }
+      it { is_expected.not_to include('content-length') }
       it { is_expected.not_to include('a') }
+      it { is_expected.to include('transfer-encoding') }
     end
   end
 end
